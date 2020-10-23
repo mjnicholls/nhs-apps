@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<title>GCCNHS | HOME</title>
+	</head>
+	<body>
+		<!-- HEADER & NAVIGATION -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<!-- LOGO IMAGE -->
+			<a class="navbar-brand" href="/index">
+				<img src="img/nhs-logo.png" alt="" />
+			</a>
+			<!-- HAMBURGER MOBILE MENU BUTTON -->
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarsExample05"
+				aria-controls="navbarsExample05"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- NAVIGATION MENU ITEMS -->
+			<div class="collapse navbar-collapse" id="navbarsExample05">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/index"
+							>Home <span class="sr-only">(current)</span></a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/patients"
+							>Patients & Visitors</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/faq">FAQ</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/about">About Us</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/help">Help</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/login">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/register">Register</a>
+					</li>
+				</ul>
+
+				<!-- NAVIGATION SEARCH BAR -->
+				<form class="form-inline my-2 my-md-0">
+					<input
+						class="form-control"
+						type="text"
+						placeholder="Search"
+					/>
+				</form>
+			</div>
+		</nav>
+		<!-- NAVIGATION END -->
+
+        <!-- MAIN WEBSITE CONTAINER -->
+        <div class="container">
+            <br>
+            <h1>Play Catch the Germ!</h1>
+            <br>
+        <style>
+        #board {
+  background: url('background.jpg');
+  background-size: cover;
+  border: 1px solid black;
+  height: 150px;
+  width: 880px;
+  margin: 0 auto;
+ }
+ .character {
+  background: url('doc.png');
+  background-size: cover;
+  width: 120px;
+  height: 120px;
+  padding: 10px;
+  margin: 10px;
+  float: left;
+  display: none;
+ }
+ .thief {
+  background: url('germ.jpg');
+  background-size: cover;
+ }
+ .hidden {
+  display: none;
+ }
+ .visible {
+  display: block;
+ }
+
+        </style>
+		
+                <button class = "btn-dark" value="Play" onclick="startGame()">PLAY</button>
+                <br>
+                <div id="board">
+                 <div class="character">1</div>
+                 <div class="character">2</div>
+                 <div class="character">3</div>
+                 <div class="character">4</div>
+                 <div class="character">5</div>
+                 <div class="character">6</div>
+                </div>
+                <script>
+                 function startGame() {
+                  gameLoop();
+                 }
+                 var loops = 0;
+                 var peopleVisible = false;
+                 var gameScore = 0;
+                 function gameLoop() {
+                  peopleVisible = !peopleVisible;
+                  createCharacters();
+                  loops++;
+                  if(loops < 12) {
+                   setTimeout(gameLoop, peopleVisible ? 1000 : 3000);
+                  }
+                  else {
+                   alert("You scored " + gameScore);
+                  }
+                 }
+                 function createCharacters() {
+                  var board = document.getElementById("board");
+                  var classToSet = peopleVisible ? "character visible" : "character hidden";
+                  for(var index = 0; index < 6; index ++) {
+                  board.children[index].className = classToSet;
+                  board.children[index].innerHTML = "";
+                  board.children[index].onclick = function() {
+                   gameScore += -2;
+                  }
+                 }
+                  var randomNumber = Math.floor(Math.random() * 6) + 1;
+                  board.children[randomNumber-1].innerHTML = "";
+                  board.children[randomNumber-1].onclick = function() {
+                   gameScore++;
+                  }
+                  board.children[randomNumber-1].className = classToSet + " thief";
+                 }
+                </script>
+                <br>
+				<br>
+				<button type="submit" class = "btn-dark"><a href="/children2"> Next Game!</a></button>
+                </div>
+		
+
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"
+		></script>
+		<script src="js/bootstrap.js"></script>
+	</body>
+</html>
